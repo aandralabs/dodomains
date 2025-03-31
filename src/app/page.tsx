@@ -251,7 +251,7 @@ export default function Home() {
                   <div className="flex gap-2">
                     <Input
                       id="keywords"
-                      placeholder="Add keywords (e.g., creative, design)"
+                      placeholder="Add keywords (e.g., creative, design). Don't forget to press enter!"
                       value={currentKeyword}
                       onChange={(e) => setCurrentKeyword(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && addKeyword()}
