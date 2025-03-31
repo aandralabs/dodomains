@@ -1,11 +1,14 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
+import { observeOpenAI } from "langfuse";
 import pool from "@/src/lib/db";
 
 // Initialize OpenAI client
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const openai = observeOpenAI(
+  new OpenAI({
+    apiKey: process.env.OPENAI_API_KEY,
+  }),
+);
 
 // Popular TLDs for different purposes
 const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev"];
