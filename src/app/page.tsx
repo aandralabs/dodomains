@@ -227,7 +227,7 @@ export default function Home() {
             <div className="flex flex-wrap justify-center gap-2 text-sm text-muted-foreground backdrop-blur-[1px] bg-background/30 px-2 py-1 rounded">
               <span>100% Free to Use</span>
               <span>•</span>
-              <span>ChatGPT-Powered Suggestions</span>
+              <span>AI-Powered Suggestions</span>
               <span>•</span>
               <span>Available Domains Only</span>
             </div>
@@ -237,11 +237,12 @@ export default function Home() {
             {/* Input Card with Glass Effect */}
             <Card className="relative z-10 backdrop-blur-sm bg-background/80 border-opacity-50 shadow-lg">
               <CardHeader>
-                <CardTitle>Free Domain Name Generator</CardTitle>
+                <CardTitle>Dodo-Powered Domain Name Generator</CardTitle>
                 <CardDescription>
                   Enter keywords related to your project and our free LLM
                   technology (powered by ChatGPT) will generate uniquely
-                  creative, available domain names
+                  creative, available domain names. Our hard-working dodo is
+                  standing by!
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -345,6 +346,15 @@ export default function Home() {
                         </div>
                       ))}
                     </div>
+                    <p className="text-xs text-muted-foreground mt-1">
+                      {domainStyle === "funny"
+                        ? "Warning: Our dodo may laugh uncontrollably while generating these"
+                        : domainStyle === "professional"
+                          ? "Our dodo will put on a tiny business suit for this one"
+                          : domainStyle === "creative"
+                            ? "The dodo is stretching its creative wings (though it can't fly)"
+                            : "Our dodo is fluffing its feathers, ready to think"}
+                    </p>
                   </div>
 
                   <div className="space-y-3">
@@ -468,6 +478,12 @@ export default function Home() {
                 </div>
               </CardContent>
               <CardFooter className="flex flex-col gap-4">
+                <div className="w-full text-center mb-1">
+                  <p className="text-sm text-muted-foreground">
+                    Our dodo promises not to go extinct before finding your
+                    perfect domain
+                  </p>
+                </div>
                 <Button
                   className="w-full"
                   size="lg"
@@ -493,7 +509,8 @@ export default function Home() {
                 <CardHeader>
                   <CardTitle>Domain Suggestions</CardTitle>
                   <CardDescription>
-                    Based on your keywords: {keywords.join(", ")}
+                    Based on your keywords: {keywords.join(", ")}. Our dodo is
+                    proud of these finds!
                   </CardDescription>
                 </CardHeader>
                 <CardContent>
