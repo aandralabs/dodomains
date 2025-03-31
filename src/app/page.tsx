@@ -22,7 +22,7 @@ import {
 } from "@/src/components/ui/tabs";
 import { Slider } from "@/src/components/ui/slider";
 import { Label } from "@/src/components/ui/label";
-import { SplashCursor } from "@/src/components/ui/SplashCursor";
+import { Waves } from "@/src/components/ui/waves";
 import { cn } from "@/src/lib/utils";
 
 // Expanded TLD lists for user selection
@@ -158,9 +158,22 @@ export default function Home() {
 
   return (
     <main>
-      <SplashCursor />
-      <div className="min-h-screen bg-gradient-to-b from-background to-background/80 p-4 sm:p-6 md:p-8">
-        <div className="max-w-5xl mx-auto space-y-8">
+      <div className="min-h-screen bg-gradient-to-b from-background to-background/80 p-4 sm:p-6 md:p-8 relative">
+        <div className="absolute inset-0 overflow-hidden">
+          <Waves
+            lineColor="hsl(var(--foreground)/0.02)"
+            backgroundColor="transparent"
+            waveSpeedX={0.005}
+            waveSpeedY={0.002}
+            waveAmpX={20}
+            waveAmpY={10}
+            friction={0.98}
+            tension={0.002}
+            xGap={30}
+            yGap={60}
+          />
+        </div>
+        <div className="max-w-5xl mx-auto space-y-8 relative z-10">
           <header className="text-center space-y-4">
             <div className="flex flex-col items-center">
               <div className="relative w-48 h-48 mb-2">
@@ -173,11 +186,11 @@ export default function Home() {
                 />
               </div>
             </div>
-            <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto backdrop-blur-[1px] bg-background/30 px-2 py-1 rounded">
               The first 100% free domain name generator to use ChatGPT and LLMs
               for highly creative, available domain suggestions
             </p>
-            <div className="flex flex-wrap justify-center gap-2 text-sm text-muted-foreground">
+            <div className="flex flex-wrap justify-center gap-2 text-sm text-muted-foreground backdrop-blur-[1px] bg-background/30 px-2 py-1 rounded">
               <span>100% Free to Use</span>
               <span>•</span>
               <span>ChatGPT-Powered Suggestions</span>
@@ -573,24 +586,24 @@ export default function Home() {
 
           {/* Adding SEO-friendly content sections */}
           <section className="mt-12 space-y-6 text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold">
+            <h2 className="text-2xl font-bold backdrop-blur-[1px] bg-background/30 py-1 rounded">
               How Our AI Domain Generator Works
             </h2>
             <div className="grid md:grid-cols-3 gap-6 text-left">
-              <div className="space-y-2">
+              <div className="space-y-2 backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <h3 className="font-medium">1. Enter Your Keywords</h3>
                 <p className="text-muted-foreground">
                   Provide keywords and a brief description of your project
                 </p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <h3 className="font-medium">2. ChatGPT-Powered Generation</h3>
                 <p className="text-muted-foreground">
                   Our LLM technology creates uniquely creative and brandable
                   domain suggestions
                 </p>
               </div>
-              <div className="space-y-2">
+              <div className="space-y-2 backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <h3 className="font-medium">3. Availability Check</h3>
                 <p className="text-muted-foreground">
                   We verify domain availability in real-time so you only see
@@ -601,25 +614,25 @@ export default function Home() {
           </section>
 
           <section className="mt-8 space-y-6 text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold">Why Choose dodomains.dev</h2>
+            <h2 className="text-2xl font-bold backdrop-blur-[1px] bg-background/30 py-1 rounded">Why Choose dodomains.dev</h2>
             <ul className="grid md:grid-cols-2 gap-4 text-left">
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
                 <span>100% free to use with no hidden costs</span>
               </li>
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
                 <span>
                   First domain generator to use ChatGPT and other LLMs
                 </span>
               </li>
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
                 <span>
                   Real-time availability checking across all major TLDs
                 </span>
               </li>
-              <li className="flex gap-2 items-start">
+              <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
                 <span>
                   Highly creative domain suggestions beyond traditional
@@ -629,7 +642,7 @@ export default function Home() {
             </ul>
           </section>
 
-          <footer className="mt-16 pt-8 border-t text-center text-sm text-muted-foreground">
+          <footer className="mt-16 pt-8 border-t text-center text-sm text-muted-foreground backdrop-blur-[1px] bg-background/30 p-2 rounded">
             <p>
               © {new Date().getFullYear()} dodomains.dev. The first 100% free
               LLM-powered domain name generator.
@@ -646,7 +659,7 @@ export default function Home() {
                 rel="noopener noreferrer"
                 className="text-primary hover:underline"
               >
-                Redouane
+                redouane
               </a>
             </p>
           </footer>
