@@ -690,7 +690,7 @@ export default function Home() {
               <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
                 <span>
-                  Real-time availability checking across all major TLDs
+                  Verified against over 270+ million existing domain records worldwide to ensure availability
                 </span>
               </li>
               <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
