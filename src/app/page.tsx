@@ -13,13 +13,6 @@ import {
 import { Button } from "@/src/components/ui/button";
 import { Input } from "@/src/components/ui/input";
 import { Textarea } from "@/src/components/ui/textarea";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "@/src/components/ui/select";
 import { Badge } from "@/src/components/ui/badge";
 import {
   Tabs,
@@ -60,6 +53,15 @@ const REGISTRAR_COLORS = {
     text: "text-white",
   },
 };
+
+const DOMAIN_STYLES = [
+  { id: "short", label: "Short & Simple" },
+  { id: "brandable", label: "Brandable" },
+  { id: "balanced", label: "Balanced" },
+  { id: "creative", label: "Creative" },
+  { id: "funny", label: "Funny" },
+  { id: "professional", label: "Professional" },
+];
 
 export default function Home() {
   const [keywords, setKeywords] = useState<string[]>([]);
@@ -265,22 +267,37 @@ export default function Home() {
                   </div>
 
                   <div className="space-y-2">
-                    <Label htmlFor="style">Domain Style</Label>
-                    <Select value={domainStyle} onValueChange={setDomainStyle}>
-                      <SelectTrigger id="style">
-                        <SelectValue placeholder="Select style" />
-                      </SelectTrigger>
-                      <SelectContent>
-                        <SelectItem value="short">Short & Simple</SelectItem>
-                        <SelectItem value="brandable">Brandable</SelectItem>
-                        <SelectItem value="balanced">Balanced</SelectItem>
-                        <SelectItem value="creative">Creative</SelectItem>
-                        <SelectItem value="funny">Funny</SelectItem>
-                        <SelectItem value="professional">
-                          Professional
-                        </SelectItem>
-                      </SelectContent>
-                    </Select>
+                    <Label>Domain Style</Label>
+                    <div className="grid grid-cols-3 gap-2">
+                      {DOMAIN_STYLES.map((style) => (
+                        <div
+                          key={style.id}
+                          className={`p-2 border rounded flex items-center justify-between cursor-pointer hover:bg-muted/50 ${
+                            domainStyle === style.id
+                              ? "bg-primary/10 border-primary"
+                              : ""
+                          }`}
+                          onClick={() => setDomainStyle(style.id)}
+                        >
+                          <span>{style.label}</span>
+                          {domainStyle === style.id && (
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <polyline points="20 6 9 17 4 12"></polyline>
+                            </svg>
+                          )}
+                        </div>
+                      ))}
+                    </div>
                   </div>
 
                   <div className="space-y-3">
