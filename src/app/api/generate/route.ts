@@ -151,6 +151,9 @@ async function checkDomainAvailability(
     (domain) => `${domain.name}.${domain.tld}`,
   );
 
+  // Create a Set for existing domains
+  let existingDomains = new Set<string>();
+
   try {
     // Check all domains at once with a single query
     const query = {
@@ -161,36 +164,17 @@ async function checkDomainAvailability(
     const result = await pool.query(query);
 
     // Create a Set of existing domains for faster lookups
-    const existingDomains = new Set(
+    existingDomains = new Set(
       result.rows.map((row: { domain: string }) => row.domain.toLowerCase()),
     );
-
+  } catch (error) {
+    console.error("Database query error:", error);
+    // In case of error, existingDomains remains empty, marking all domains as available
+  } finally {
     // Map the domain suggestions with availability information
     return domainSuggestions.map((domain) => {
       const fullDomain = `${domain.name}.${domain.tld}`;
       const available = !existingDomains.has(fullDomain.toLowerCase());
-
-      // Generate affiliate links for available domains
-      const affiliateLinks = available
-        ? {
-            godaddy: `https://www.godaddy.com/domainsearch/find?domainToCheck=${domain.name}&tld=.${domain.tld}&checkAvail=1&affid=${AFFILIATE_IDS.godaddy}`,
-            namecheap: `https://www.namecheap.com/domains/registration/results/?domain=${fullDomain}&aff=${AFFILIATE_IDS.namecheap}`,
-          }
-        : null;
-
-      return {
-        name: fullDomain,
-        available,
-        affiliateLinks,
-      };
-    });
-  } catch (error) {
-    console.error("Database query error:", error);
-
-    // Fallback to simulated results if database query fails
-    return domainSuggestions.map((domain) => {
-      const fullDomain = `${domain.name}.${domain.tld}`;
-      const available = Math.random() > 0.2; // 80% chance of being available
 
       // Generate affiliate links for available domains
       const affiliateLinks = available
