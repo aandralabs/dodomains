@@ -82,6 +82,29 @@ export default function Home() {
   const [loading, setLoading] = useState(false);
   const [selectedTlds, setSelectedTlds] = useState<string[]>([]);
   const [tldCategory, setTldCategory] = useState("popular");
+  const [loadingMessage, setLoadingMessage] = useState("");
+
+  // Array of funny dodo loading messages
+  const dodoMessages = [
+    "Dodo's tiny brain is working hard...",
+    "Hmm, what rhymes with your keywords?",
+    "Dodo pecking at random keys...",
+    "Eating domain names that taste bad...",
+    "Dodo forgot what we're doing...",
+    "Bird brain loading... please wait...",
+    "Looking under rocks for cool names...",
+    "Dodo trying very hard not to go extinct again...",
+    "Asking other birds for name ideas...",
+    "Dodo fell asleep... waking up now!",
+    "Oops! Dodo sat on the keyboard...",
+    "Drawing domain names with feathers...",
+    "Dodo thinking: 'What would Google name this?'",
+    "Running in circles for inspiration...",
+    "Dodo brain on fire with ideas!",
+    "Your domain eggs are hatching soon...",
+    "Dodo making domain magic happen...",
+    "Spilling coffee on best domain ideas...",
+  ];
 
   // Get all TLDs based on category
   const getTldsByCategory = (category: string) => {
@@ -127,6 +150,15 @@ export default function Home() {
 
   const generateDomains = async () => {
     setLoading(true);
+    setResults([]);
+
+    // Start the loading message animation
+    let messageIndex = 0;
+    const messageInterval = setInterval(() => {
+      setLoadingMessage(dodoMessages[messageIndex % dodoMessages.length]);
+      messageIndex++;
+    }, 2000);
+
     try {
       const response = await fetch("/api/generate", {
         method: "POST",
@@ -152,7 +184,9 @@ export default function Home() {
       console.error("Error:", error);
       // Show error message to user
     } finally {
+      clearInterval(messageInterval);
       setLoading(false);
+      setLoadingMessage("");
     }
   };
 
@@ -433,7 +467,7 @@ export default function Home() {
                   </div>
                 </div>
               </CardContent>
-              <CardFooter>
+              <CardFooter className="flex flex-col gap-4">
                 <Button
                   className="w-full"
                   size="lg"
@@ -442,6 +476,14 @@ export default function Home() {
                 >
                   {loading ? "Generating Domains..." : "Generate Domain Ideas"}
                 </Button>
+
+                {loading && (
+                  <div className="w-full text-center mt-2">
+                    <p className="text-muted-foreground text-sm italic">
+                      {loadingMessage}
+                    </p>
+                  </div>
+                )}
               </CardFooter>
             </Card>
 
@@ -614,7 +656,9 @@ export default function Home() {
           </section>
 
           <section className="mt-8 space-y-6 text-center max-w-3xl mx-auto">
-            <h2 className="text-2xl font-bold backdrop-blur-[1px] bg-background/30 py-1 rounded">Why Choose dodomains.dev</h2>
+            <h2 className="text-2xl font-bold backdrop-blur-[1px] bg-background/30 py-1 rounded">
+              Why Choose dodomains.dev
+            </h2>
             <ul className="grid md:grid-cols-2 gap-4 text-left">
               <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
