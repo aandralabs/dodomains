@@ -192,7 +192,19 @@ export default function Home() {
 
   return (
     <main>
-      <div className="min-h-screen bg-gradient-to-b from-background to-background/80 p-4 sm:p-6 md:p-8 relative">
+      <div className="fixed top-4 left-1/2 -translate-x-1/2 max-w-2xl w-full mx-auto px-4 z-50">
+        <div className="bg-red-100 border border-red-200 text-red-900 px-4 py-3 rounded-lg shadow-lg flex items-center justify-center gap-2 backdrop-blur-sm">
+          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="shrink-0">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/>
+            <line x1="12" y1="9" x2="12" y2="13"/>
+            <line x1="12" y1="17" x2="12.01" y2="17"/>
+          </svg>
+          <p className="text-sm font-medium">
+            Service disruption due to high demand. We&apos;re working on a fix - please check back later!
+          </p>
+        </div>
+      </div>
+      <div className="min-h-screen bg-gradient-to-b from-background to-background/80 p-4 sm:p-6 md:p-8 relative pt-16">
         <div className="absolute inset-0 overflow-hidden">
           <Waves
             lineColor="hsl(var(--foreground)/0.02)"
