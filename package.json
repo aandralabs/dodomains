@@ -23,6 +23,8 @@
     "openai": "^4.90.0",
     "pg": "^8.14.1",
     "postcss": "^8.5.3",
+    "posthog-js": "^1.234.1",
+    "posthog-node": "^4.11.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "shadcn": "^2.4.0-canary.17",
