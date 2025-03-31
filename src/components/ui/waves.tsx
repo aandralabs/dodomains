@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { cn } from "@/src/lib/utils";
 
 interface WavesProps {
@@ -150,7 +150,7 @@ export function Waves({
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const ctxRef = useRef<CanvasRenderingContext2D | null>(null);
   const boundingRef = useRef({ width: 0, height: 0, left: 0, top: 0 });
-  const noiseRef = useRef(new Noise(Math.random()));
+  const noiseRef = useRef<Noise | null>(null);
   const linesRef = useRef<Point[][]>([]);
   const mouseRef = useRef({
     x: -10,
@@ -164,8 +164,18 @@ export function Waves({
     a: 0,
     set: false,
   });
+  const [isClient, setIsClient] = useState(false);
+
+  // Only initialize client-side elements after component mounts
+  useEffect(() => {
+    setIsClient(true);
+    noiseRef.current = new Noise(Math.floor(Math.random() * 1000));
+  }, []);
 
   useEffect(() => {
+    // Don't run any browser-specific code during SSR
+    if (!isClient) return;
+
     const canvas = canvasRef.current;
     const container = containerRef.current;
 
@@ -210,6 +220,8 @@ export function Waves({
       const lines = linesRef.current;
       const mouse = mouseRef.current;
       const noise = noiseRef.current;
+      if (!noise) return;
+
       lines.forEach((pts: Point[]) => {
         pts.forEach((p: Point) => {
           const move =
@@ -312,14 +324,18 @@ export function Waves({
       setSize();
       setLines();
     }
+
     function onMouseMove(e: MouseEvent) {
       updateMouse(e.pageX, e.pageY);
     }
+
     function onTouchMove(e: TouchEvent) {
-      e.preventDefault();
-      const touch = e.touches[0];
-      updateMouse(touch.clientX, touch.clientY);
+      if (e.touches && e.touches[0]) {
+        const touch = e.touches[0];
+        updateMouse(touch.clientX, touch.clientY);
+      }
     }
+
     function updateMouse(x: number, y: number) {
       const mouse = mouseRef.current;
       const b = boundingRef.current;
@@ -339,14 +355,17 @@ export function Waves({
     requestAnimationFrame(tick);
     window.addEventListener("resize", onResize);
     window.addEventListener("mousemove", onMouseMove);
-    window.addEventListener("touchmove", onTouchMove, { passive: false });
+    window.addEventListener("touchstart", onTouchMove);
+    window.addEventListener("touchmove", onTouchMove);
 
     return () => {
       window.removeEventListener("resize", onResize);
       window.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("touchstart", onTouchMove);
       window.removeEventListener("touchmove", onTouchMove);
     };
   }, [
+    isClient,
     lineColor,
     backgroundColor,
     waveSpeedX,
@@ -378,7 +397,7 @@ export function Waves({
         )}
         style={{
           transform:
-            "translate3d(calc(var(--x) - 50%), calc(var(--y) - 50%), 0)",
+            "translate3d(calc(var(--x, 0px) - 50%), calc(var(--y, 0px) - 50%), 0)",
           willChange: "transform",
         }}
       />
