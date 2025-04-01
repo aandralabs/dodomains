@@ -221,8 +221,8 @@ export default function Home() {
               </div>
             </div>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto backdrop-blur-[1px] bg-background/30 px-2 py-1 rounded">
-              The first 100% free domain name generator to use ChatGPT and LLMs
-              for highly creative, available domain suggestions
+              The first 100% free domain name generator to use advanced LLMs for
+              highly creative, available domain suggestions
             </p>
             <div className="flex flex-wrap justify-center gap-2 text-sm text-muted-foreground backdrop-blur-[1px] bg-background/30 px-2 py-1 rounded">
               <span>100% Free to Use</span>
@@ -240,9 +240,8 @@ export default function Home() {
                 <CardTitle>Dodo-Powered Domain Name Generator</CardTitle>
                 <CardDescription>
                   Enter keywords related to your project and our free LLM
-                  technology (powered by ChatGPT) will generate uniquely
-                  creative, available domain names. Our hard-working dodo is
-                  standing by!
+                  technology will generate uniquely creative, available domain
+                  names. Our hard-working dodo is standing by!
                 </CardDescription>
               </CardHeader>
               <CardContent className="space-y-6">
@@ -656,7 +655,7 @@ export default function Home() {
                 </p>
               </div>
               <div className="space-y-2 backdrop-blur-[1px] bg-background/30 p-2 rounded">
-                <h3 className="font-medium">2. ChatGPT-Powered Generation</h3>
+                <h3 className="font-medium">2. LLM-Powered Generation</h3>
                 <p className="text-muted-foreground">
                   Our LLM technology creates uniquely creative and brandable
                   domain suggestions
@@ -683,9 +682,7 @@ export default function Home() {
               </li>
               <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
-                <span>
-                  First domain generator to use ChatGPT and other LLMs
-                </span>
+                <span>First domain generator to use advanced LLMs</span>
               </li>
               <li className="flex gap-2 items-start backdrop-blur-[1px] bg-background/30 p-2 rounded">
                 <span className="text-primary">✓</span>
