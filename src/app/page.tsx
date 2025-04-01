@@ -24,6 +24,7 @@ import { Slider } from "@/src/components/ui/slider";
 import { Label } from "@/src/components/ui/label";
 import { Waves } from "@/src/components/ui/waves";
 import { cn } from "@/src/lib/utils";
+import { Testimonials } from "@/src/components/testimonials";
 
 // Expanded TLD lists for user selection
 const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev"];
@@ -670,6 +671,8 @@ export default function Home() {
               </div>
             </div>
           </section>
+
+          <Testimonials />
 
           <section className="mt-8 space-y-6 text-center max-w-3xl mx-auto">
             <h2 className="text-2xl font-bold backdrop-blur-[1px] bg-background/30 py-1 rounded">
