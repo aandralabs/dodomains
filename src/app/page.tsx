@@ -248,7 +248,7 @@ export default function Home() {
             {/* Input Card with Glass Effect */}
             <Card className="relative z-10 backdrop-blur-sm bg-background/80 border-opacity-50 shadow-lg">
               <CardHeader>
-                <CardTitle>Dodo-Powered Domain Name Generator</CardTitle>
+                <CardTitle>Dodo-Powered Domain Name Generator 🦤</CardTitle>
                 <CardDescription>
                   Enter keywords related to your project and our free LLM
                   technology will generate uniquely creative, available domain
@@ -509,7 +509,7 @@ export default function Home() {
                 <div className="w-full text-center mb-1">
                   <p className="text-sm text-muted-foreground">
                     Our dodo promises not to go extinct before finding your
-                    perfect domain
+                    perfect domain 🦤
                   </p>
                 </div>
                 <Button
@@ -518,7 +518,7 @@ export default function Home() {
                   onClick={generateDomains}
                   disabled={loading || keywords.length === 0}
                 >
-                  {loading ? "Generating Domains..." : "Generate Domain Ideas"}
+                  {loading ? "Generating Domains..." : "Generate Domain Ideas 🦤"}
                 </Button>
 
                 {loading && (
