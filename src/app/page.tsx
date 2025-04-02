@@ -85,6 +85,11 @@ export default function Home() {
   const [tldCategory, setTldCategory] = useState("popular");
   const [loadingMessage, setLoadingMessage] = useState("");
 
+  // Constants for keyword limits
+  const MAX_KEYWORDS = 5;
+  const MAX_KEYWORD_LENGTH = 30;
+  const MAX_DESCRIPTION_LENGTH = 300;
+
   // Array of funny dodo loading messages
   const dodoMessages = [
     "Dodo's tiny brain is working hard...",
@@ -139,7 +144,12 @@ export default function Home() {
   };
 
   const addKeyword = () => {
-    if (currentKeyword.trim() && !keywords.includes(currentKeyword.trim())) {
+    if (
+      currentKeyword.trim() &&
+      !keywords.includes(currentKeyword.trim()) &&
+      keywords.length < MAX_KEYWORDS &&
+      currentKeyword.trim().length <= MAX_KEYWORD_LENGTH
+    ) {
       setKeywords([...keywords, currentKeyword.trim()]);
       setCurrentKeyword("");
     }
@@ -255,8 +265,18 @@ export default function Home() {
                       value={currentKeyword}
                       onChange={(e) => setCurrentKeyword(e.target.value)}
                       onKeyDown={(e) => e.key === "Enter" && addKeyword()}
+                      maxLength={MAX_KEYWORD_LENGTH}
+                      disabled={keywords.length >= MAX_KEYWORDS}
                     />
-                    <Button onClick={addKeyword} className="shrink-0">
+                    <Button
+                      onClick={addKeyword}
+                      className="shrink-0"
+                      disabled={
+                        keywords.length >= MAX_KEYWORDS ||
+                        !currentKeyword.trim() ||
+                        currentKeyword.length > MAX_KEYWORD_LENGTH
+                      }
+                    >
                       Add
                     </Button>
                   </div>
@@ -277,6 +297,10 @@ export default function Home() {
                       </Badge>
                     ))}
                   </div>
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {keywords.length}/{MAX_KEYWORDS} keywords (max{" "}
+                    {MAX_KEYWORD_LENGTH} characters each)
+                  </p>
                 </div>
 
                 <div className="space-y-2">
@@ -289,7 +313,11 @@ export default function Home() {
                     value={description}
                     onChange={(e) => setDescription(e.target.value)}
                     rows={3}
+                    maxLength={MAX_DESCRIPTION_LENGTH}
                   />
+                  <p className="text-xs text-muted-foreground mt-1">
+                    {description.length}/{MAX_DESCRIPTION_LENGTH} characters
+                  </p>
                 </div>
 
                 <div className="space-y-4 pt-4">
