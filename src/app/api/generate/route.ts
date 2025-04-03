@@ -24,12 +24,6 @@ const generateRequestSchema = z.object({
 const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev"];
 const CREATIVE_TLDS = ["ai", "io", "co", "me", "app", "xyz", "tech", "design"];
 
-// Add at the top of the file with other constants
-const AFFILIATE_IDS = {
-  godaddy: process.env.GODADDY_AFFILIATE_ID,
-  namecheap: process.env.NAMECHEAP_AFFILIATE_ID,
-};
-
 export async function POST(request: Request) {
   try {
     const body = await request.json();
@@ -199,8 +193,8 @@ async function checkDomainAvailability(
       // Generate affiliate links for available domains
       const affiliateLinks = available
         ? {
-            godaddy: `https://www.godaddy.com/domainsearch/find?domainToCheck=${domain.name}&tld=.${domain.tld}&checkAvail=1&affid=${AFFILIATE_IDS.godaddy}`,
-            namecheap: `https://www.namecheap.com/domains/registration/results/?domain=${fullDomain}&aff=${AFFILIATE_IDS.namecheap}`,
+            godaddy: `https://www.godaddy.com/domainsearch/find?domainToCheck=${domain.name}&tld=.${domain.tld}&checkAvail=1`,
+            namecheap: `https://www.anrdoezrs.net/click-101410219-12892698?url=${encodeURIComponent(`https://www.namecheap.com/domains/registration/results/?domain=${domain.name}.${domain.tld}`)}`,
           }
         : null;
 
