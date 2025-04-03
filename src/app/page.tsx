@@ -566,15 +566,15 @@ export default function Home() {
                               <div className="flex flex-col sm:flex-row gap-1 items-stretch sm:items-center w-full sm:w-auto">
                                 <Button
                                   className={cn(
-                                    REGISTRAR_COLORS.godaddy.bg,
-                                    REGISTRAR_COLORS.godaddy.hover,
-                                    REGISTRAR_COLORS.godaddy.text,
+                                    REGISTRAR_COLORS.namecheap.bg,
+                                    REGISTRAR_COLORS.namecheap.hover,
+                                    REGISTRAR_COLORS.namecheap.text,
                                     "border-0 w-full sm:w-auto",
                                   )}
                                   size="sm"
-                                  onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
+                                  onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
                                 >
-                                  GoDaddy
+                                  Namecheap
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="12"
@@ -594,15 +594,15 @@ export default function Home() {
                                 </Button>
                                 <Button
                                   className={cn(
-                                    REGISTRAR_COLORS.namecheap.bg,
-                                    REGISTRAR_COLORS.namecheap.hover,
-                                    REGISTRAR_COLORS.namecheap.text,
+                                    REGISTRAR_COLORS.godaddy.bg,
+                                    REGISTRAR_COLORS.godaddy.hover,
+                                    REGISTRAR_COLORS.godaddy.text,
                                     "border-0 w-full sm:w-auto",
                                   )}
                                   size="sm"
-                                  onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
+                                  onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
                                 >
-                                  Namecheap
+                                  GoDaddy
                                   <svg
                                     xmlns="http://www.w3.org/2000/svg"
                                     width="12"
@@ -645,15 +645,15 @@ export default function Home() {
                                 <div className="flex flex-col sm:flex-row gap-1 items-stretch sm:items-center w-full sm:w-auto">
                                   <Button
                                     className={cn(
-                                      REGISTRAR_COLORS.godaddy.bg,
-                                      REGISTRAR_COLORS.godaddy.hover,
-                                      REGISTRAR_COLORS.godaddy.text,
+                                      REGISTRAR_COLORS.namecheap.bg,
+                                      REGISTRAR_COLORS.namecheap.hover,
+                                      REGISTRAR_COLORS.namecheap.text,
                                       "border-0 w-full sm:w-auto",
                                     )}
                                     size="sm"
-                                    onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
+                                    onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
                                   >
-                                    GoDaddy
+                                    Namecheap
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       width="12"
@@ -673,15 +673,15 @@ export default function Home() {
                                   </Button>
                                   <Button
                                     className={cn(
-                                      REGISTRAR_COLORS.namecheap.bg,
-                                      REGISTRAR_COLORS.namecheap.hover,
-                                      REGISTRAR_COLORS.namecheap.text,
+                                      REGISTRAR_COLORS.godaddy.bg,
+                                      REGISTRAR_COLORS.godaddy.hover,
+                                      REGISTRAR_COLORS.godaddy.text,
                                       "border-0 w-full sm:w-auto",
                                     )}
                                     size="sm"
-                                    onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
+                                    onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
                                   >
-                                    Namecheap
+                                    GoDaddy
                                     <svg
                                       xmlns="http://www.w3.org/2000/svg"
                                       width="12"
