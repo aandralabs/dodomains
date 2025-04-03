@@ -572,15 +572,9 @@ export default function Home() {
                                     "border-0 w-full sm:w-auto",
                                   )}
                                   size="sm"
-                                  asChild
+                                  onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
                                 >
-                                  <a
-                                    href={domain.affiliateLinks?.godaddy}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    GoDaddy
-                                  </a>
+                                  GoDaddy
                                 </Button>
                                 <Button
                                   className={cn(
@@ -590,15 +584,9 @@ export default function Home() {
                                     "border-0 w-full sm:w-auto",
                                   )}
                                   size="sm"
-                                  asChild
+                                  onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
                                 >
-                                  <a
-                                    href={domain.affiliateLinks?.namecheap}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                  >
-                                    Namecheap
-                                  </a>
+                                  Namecheap
                                 </Button>
                               </div>
                             )}
@@ -631,15 +619,9 @@ export default function Home() {
                                       "border-0 w-full sm:w-auto",
                                     )}
                                     size="sm"
-                                    asChild
+                                    onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
                                   >
-                                    <a
-                                      href={domain.affiliateLinks?.godaddy}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      GoDaddy
-                                    </a>
+                                    GoDaddy
                                   </Button>
                                   <Button
                                     className={cn(
@@ -649,15 +631,9 @@ export default function Home() {
                                       "border-0 w-full sm:w-auto",
                                     )}
                                     size="sm"
-                                    asChild
+                                    onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
                                   >
-                                    <a
-                                      href={domain.affiliateLinks?.namecheap}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                    >
-                                      Namecheap
-                                    </a>
+                                    Namecheap
                                   </Button>
                                 </div>
                               )}
