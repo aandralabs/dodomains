@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { observeOpenAI } from "langfuse";
 import pool from "@/src/lib/db";
+import { z } from "zod";
 
 // Initialize OpenAI client
 const openai = observeOpenAI(
@@ -9,6 +10,15 @@ const openai = observeOpenAI(
     apiKey: process.env.OPENAI_API_KEY,
   }),
 );
+
+// Validation schema
+const generateRequestSchema = z.object({
+  keywords: z.array(z.string().max(30)).min(1).max(5),
+  description: z.string().max(300).optional(),
+  domainLength: z.number().min(3).max(20),
+  domainStyle: z.string().min(1),
+  tlds: z.array(z.string()).optional(),
+});
 
 // Popular TLDs for different purposes
 const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev"];
@@ -22,8 +32,18 @@ const AFFILIATE_IDS = {
 
 export async function POST(request: Request) {
   try {
-    const { keywords, description, domainLength, domainStyle, tlds } =
-      await request.json();
+    const body = await request.json();
+
+    // Validate request body against schema
+    const validationResult = generateRequestSchema.safeParse(body);
+    if (!validationResult.success) {
+      return NextResponse.json(
+        { error: "Invalid request data", details: validationResult.error.format() },
+        { status: 400 },
+      );
+    }
+
+    const { keywords, description, domainLength, domainStyle, tlds } = validationResult.data;
 
     // Validate required inputs
     if (!keywords || !Array.isArray(keywords) || keywords.length === 0) {
@@ -34,7 +54,7 @@ export async function POST(request: Request) {
     }
 
     // If specific TLDs are selected, use them; otherwise let the AI choose
-    const userSelectedTlds = tlds && tlds.length > 0;
+    const userSelectedTlds = Boolean(tlds && tlds.length > 0);
 
     // Build the prompt for the AI
     const prompt = buildPrompt(
@@ -82,15 +102,15 @@ export async function POST(request: Request) {
 
 function buildPrompt(
   keywords: string[],
-  description: string,
+  description: string | undefined,
   domainLength: number,
   domainStyle: string,
-  tlds: string[],
+  tlds: string[] | undefined,
   userSelectedTlds: boolean,
 ) {
   let tldInstructions = "";
 
-  if (userSelectedTlds) {
+  if (userSelectedTlds && tlds) {
     tldInstructions = `TLDs to consider: ${tlds.join(", ")}
 Please only use these specific TLDs in your suggestions.`;
   } else {
