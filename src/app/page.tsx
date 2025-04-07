@@ -27,7 +27,7 @@ import { cn } from "@/src/lib/utils";
 import { Testimonials } from "@/src/components/testimonials";
 
 // Expanded TLD lists for user selection
-const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev"];
+const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev", "ai"];
 const CREATIVE_TLDS = ["ai", "io", "co", "me", "app", "xyz", "tech", "design"];
 const COUNTRY_TLDS = ["us", "uk", "ca", "eu", "de", "fr", "jp", "au"];
 const SPECIALTY_TLDS = [
@@ -218,6 +218,32 @@ export default function Home() {
             yGap={60}
           />
         </div>
+
+        {/* GitHub button in top right corner */}
+        <div className="fixed top-4 right-4 z-50">
+          <a
+            href="https://github.com/r13i/dodomains"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-1 px-3 py-1.5 text-sm rounded-md bg-background/80 hover:bg-background/90 transition-colors backdrop-blur-sm border-2 border-border/70"
+          >
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2.5"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"></path>
+            </svg>
+            GitHub
+          </a>
+        </div>
+
         <div className="max-w-5xl mx-auto space-y-8 relative z-10">
           <header className="text-center space-y-4">
             <div className="flex flex-col items-center">
@@ -518,7 +544,9 @@ export default function Home() {
                   onClick={generateDomains}
                   disabled={loading || keywords.length === 0}
                 >
-                  {loading ? "Generating Domains..." : "Generate Domain Ideas 🦤"}
+                  {loading
+                    ? "Generating Domains..."
+                    : "Generate Domain Ideas 🦤"}
                 </Button>
 
                 {loading && (
@@ -572,7 +600,13 @@ export default function Home() {
                                     "border-0 w-full sm:w-auto",
                                   )}
                                   size="sm"
-                                  onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
+                                  onClick={() =>
+                                    window.open(
+                                      domain.affiliateLinks?.namecheap,
+                                      "_blank",
+                                      "noopener,noreferrer",
+                                    )
+                                  }
                                 >
                                   Namecheap
                                   <svg
@@ -600,7 +634,13 @@ export default function Home() {
                                     "border-0 w-full sm:w-auto",
                                   )}
                                   size="sm"
-                                  onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
+                                  onClick={() =>
+                                    window.open(
+                                      domain.affiliateLinks?.godaddy,
+                                      "_blank",
+                                      "noopener,noreferrer",
+                                    )
+                                  }
                                 >
                                   GoDaddy
                                   <svg
@@ -651,7 +691,13 @@ export default function Home() {
                                       "border-0 w-full sm:w-auto",
                                     )}
                                     size="sm"
-                                    onClick={() => window.open(domain.affiliateLinks?.namecheap, '_blank', 'noopener,noreferrer')}
+                                    onClick={() =>
+                                      window.open(
+                                        domain.affiliateLinks?.namecheap,
+                                        "_blank",
+                                        "noopener,noreferrer",
+                                      )
+                                    }
                                   >
                                     Namecheap
                                     <svg
@@ -679,7 +725,13 @@ export default function Home() {
                                       "border-0 w-full sm:w-auto",
                                     )}
                                     size="sm"
-                                    onClick={() => window.open(domain.affiliateLinks?.godaddy, '_blank', 'noopener,noreferrer')}
+                                    onClick={() =>
+                                      window.open(
+                                        domain.affiliateLinks?.godaddy,
+                                        "_blank",
+                                        "noopener,noreferrer",
+                                      )
+                                    }
                                   >
                                     GoDaddy
                                     <svg
