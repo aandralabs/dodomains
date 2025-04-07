@@ -197,7 +197,7 @@ async function checkDomainAvailability(
       // Generate affiliate links for available domains
       const affiliateLinks = available
         ? {
-            godaddy: `https://www.godaddy.com/domainsearch/find?domainToCheck=${domain.name}&tld=.${domain.tld}&checkAvail=1`,
+            godaddy: `https://www.anrdoezrs.net/click-101410219-11774111?url=${encodeURIComponent(`https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=${domain.name}.${domain.tld}`)}`,
             namecheap: `https://www.anrdoezrs.net/click-101410219-12892698?url=${encodeURIComponent(`https://www.namecheap.com/domains/registration/results/?domain=${domain.name}.${domain.tld}`)}`,
           }
         : null;
