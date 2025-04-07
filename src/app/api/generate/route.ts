@@ -32,12 +32,16 @@ export async function POST(request: Request) {
     const validationResult = generateRequestSchema.safeParse(body);
     if (!validationResult.success) {
       return NextResponse.json(
-        { error: "Invalid request data", details: validationResult.error.format() },
+        {
+          error: "Invalid request data",
+          details: validationResult.error.format(),
+        },
         { status: 400 },
       );
     }
 
-    const { keywords, description, domainLength, domainStyle, tlds } = validationResult.data;
+    const { keywords, description, domainLength, domainStyle, tlds } =
+      validationResult.data;
 
     // Validate required inputs
     if (!keywords || !Array.isArray(keywords) || keywords.length === 0) {
