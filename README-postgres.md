@@ -1,8 +1,8 @@
-# PostgreSQL Production Setup on Hetzner VM
+# PostgreSQL Setup on a VM
 
 ## Prerequisites
 
-- Hetzner VM with 2 vCPUs, 2GB RAM, and 40GB SSD
+- VM with 2 vCPUs, 2GB RAM, and 40GB SSD
 - Ubuntu 22.04 or a compatible Linux distribution
 - SSH access to the server
 
