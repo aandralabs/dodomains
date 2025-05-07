@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 import { observeOpenAI } from "langfuse";
-import pool from "@/src/lib/db";
 import { z } from "zod";
 
 // Initialize OpenAI client
@@ -172,41 +171,23 @@ async function checkDomainAvailability(
   // Create a Set for existing domains
   let existingDomains = new Set<string>();
 
-  try {
-    // Check all domains at once with a single query
-    const query = {
-      text: `SELECT domain FROM domains WHERE domain = ANY($1)`,
-      values: [fullDomains],
+  // Map the domain suggestions with availability information
+  return domainSuggestions.map((domain) => {
+    const fullDomain = `${domain.name}.${domain.tld}`;
+    const available = !existingDomains.has(fullDomain.toLowerCase());
+
+    // Generate affiliate links for available domains
+    const affiliateLinks = available
+      ? {
+          godaddy: `https://www.anrdoezrs.net/click-101410219-11774111?url=${encodeURIComponent(`https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=${domain.name}.${domain.tld}`)}`,
+          namecheap: `https://www.anrdoezrs.net/click-101410219-12892698?url=${encodeURIComponent(`https://www.namecheap.com/domains/registration/results/?domain=${domain.name}.${domain.tld}`)}`,
+        }
+      : null;
+
+    return {
+      name: fullDomain,
+      available,
+      affiliateLinks,
     };
-
-    const result = await pool.query(query);
-
-    // Create a Set of existing domains for faster lookups
-    existingDomains = new Set(
-      result.rows.map((row: { domain: string }) => row.domain.toLowerCase()),
-    );
-  } catch (error) {
-    console.error("Database query error:", error);
-    // In case of error, existingDomains remains empty, marking all domains as available
-  } finally {
-    // Map the domain suggestions with availability information
-    return domainSuggestions.map((domain) => {
-      const fullDomain = `${domain.name}.${domain.tld}`;
-      const available = !existingDomains.has(fullDomain.toLowerCase());
-
-      // Generate affiliate links for available domains
-      const affiliateLinks = available
-        ? {
-            godaddy: `https://www.anrdoezrs.net/click-101410219-11774111?url=${encodeURIComponent(`https://www.godaddy.com/domainsearch/find?checkAvail=1&domainToCheck=${domain.name}.${domain.tld}`)}`,
-            namecheap: `https://www.anrdoezrs.net/click-101410219-12892698?url=${encodeURIComponent(`https://www.namecheap.com/domains/registration/results/?domain=${domain.name}.${domain.tld}`)}`,
-          }
-        : null;
-
-      return {
-        name: fullDomain,
-        available,
-        affiliateLinks,
-      };
-    });
-  }
+  });
 }
