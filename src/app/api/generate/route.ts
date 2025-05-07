@@ -163,13 +163,8 @@ Return your response as a JSON object with this structure:
 async function checkDomainAvailability(
   domainSuggestions: { name: string; tld: string }[],
 ) {
-  // Prepare all full domain names to check
-  const fullDomains = domainSuggestions.map(
-    (domain) => `${domain.name}.${domain.tld}`,
-  );
-
   // Create a Set for existing domains
-  let existingDomains = new Set<string>();
+  const existingDomains = new Set<string>();
 
   // Map the domain suggestions with availability information
   return domainSuggestions.map((domain) => {
