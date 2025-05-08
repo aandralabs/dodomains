@@ -26,6 +26,8 @@ import { Waves } from "@/src/components/ui/waves";
 import { cn } from "@/src/lib/utils";
 import { Testimonials } from "@/src/components/testimonials";
 
+import { useAandra } from "@/src/lib/aandra";
+
 // Expanded TLD lists for user selection
 const POPULAR_TLDS = ["com", "net", "org", "io", "co", "app", "dev", "ai"];
 const CREATIVE_TLDS = ["ai", "io", "co", "me", "app", "xyz", "tech", "design"];
@@ -84,6 +86,8 @@ export default function Home() {
   const [selectedTlds, setSelectedTlds] = useState<string[]>([]);
   const [tldCategory, setTldCategory] = useState("popular");
   const [loadingMessage, setLoadingMessage] = useState("");
+
+  const { isFree, isSignedIn, trackAIUsage, signUp } = useAandra();
 
   // Constants for keyword limits
   const MAX_KEYWORDS = 5;
@@ -191,6 +195,7 @@ export default function Home() {
 
       const data = await response.json();
       setResults(data.results);
+      trackAIUsage();
     } catch (error) {
       console.error("Error:", error);
       // Show error message to user
@@ -542,12 +547,22 @@ export default function Home() {
                   className="w-full"
                   size="lg"
                   onClick={generateDomains}
-                  disabled={loading || keywords.length === 0}
+                  disabled={loading || keywords.length === 0 || !isFree}
                 >
                   {loading
                     ? "Generating Domains..."
                     : "Generate Domain Ideas 🦤"}
                 </Button>
+
+                {!isFree && (
+                  <Button
+                    className="w-full"
+                    size="lg"
+                    onClick={signUp}
+                  >
+                    Continue with Åndra
+                  </Button>
+                )}
 
                 {loading && (
                   <div className="w-full text-center mt-2">

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { PostHogProvider } from "../components/PostHogProvider";
+import { AandraProvider } from "../lib/aandra";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,7 +67,14 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <PostHogProvider>{children}</PostHogProvider>
+        <PostHogProvider>
+          <AandraProvider
+              host={process.env.NEXT_PUBLIC_AANDRA_HOST || ''}
+              public_key={process.env.NEXT_PUBLIC_AANDRA_PUBLIC_KEY || ''}
+          >
+            {children}
+          </AandraProvider>
+        </PostHogProvider>
       </body>
     </html>
   );
